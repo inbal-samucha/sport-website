@@ -1,0 +1,13 @@
+<%- include('includes/head.ejs') %>
+
+    <%- include('includes/nevigation.ejs') %>   
+    
+    <%if (user) { %>
+        <p><%= user.email %></p>
+        <p><%= user.password %></p>
+    <% } else { %>
+        <p>No such user</p>
+    <% } %>
+   
+    </body>
+</html>

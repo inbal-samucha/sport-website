@@ -1,0 +1,45 @@
+<%- include('includes/head.ejs') %>
+
+    <%- include('includes/nevigation.ejs') %>  
+         
+    <% if(errorMessage) { %> 
+        <div class="user-message-error"><%= errorMessage %></div>
+    <% } %>
+
+        <div class="formDiv">
+        <h1>Sign up</h1>
+
+        <form action="/sign"  method="POST" novalidate>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div id="name">
+            <label for="fname" >First name:</label>
+            <input type="text" name="firstN" id="fname" value="<%= oldInput.firstN %>" placeholder="First name"><br>
+            <label for="lname">Last name:</label>
+            <input type="text" name="lastN" id="lname" value="<%= oldInput.lastN %>" placeholder="Last name"><br>
+            </div>
+            
+            <div class="radioGender">
+            <p>Gender</p>
+            <input type="radio" value="<%= oldInput.gender %>" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+            <input type="radio" value="<%= oldInput.gender %>" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+            </div>
+
+            <div class="security">
+                <label for="email"  >Email:</label>
+                <input class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                type="email" value="<%= oldInput.email %>" name="email" id="email" placeholder="Insert your email"><br>
+                <label for="password" >password:</label>
+                <input class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+                type="password" value="<%= oldInput.password %>" name="password" id="password" placeholder="password"><br>
+                <label for="password"  >Confirm password:</label>
+                <input class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"
+                type="password" value="<%= oldInput.confirmPassword %>" name="confirmPassword" id="confirmPassword" placeholder="confirm password"><br>
+            </div>
+            <button type="submit">Submit</button>
+           
+        </form>
+    </div>
+    </body>
+</html>

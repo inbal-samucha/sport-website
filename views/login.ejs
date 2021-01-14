@@ -1,0 +1,22 @@
+<%- include('includes/head.ejs') %>
+
+    <%- include('includes/nevigation.ejs') %>  
+
+<% if(errorMessage) { %> 
+<div class="user-message-error"><%= errorMessage %></div>
+<% } %>
+
+<form class="login-form" action="/login" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+    <div id="security">
+        <label for="email" >Email:</label>
+        <input type="text" name="email" id="email" value="<%= oldInput.email %>" placeholder="Insert your email"><br>
+        <label for="password">password:</label>
+        <input type="password" name="password" id="password" value="<%= oldInput.password %>" placeholder="password"><br>
+    </div>
+    <button  type="submit"> Login </button>
+</form>
+
+
+</body>
+</html>

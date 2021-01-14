@@ -1,0 +1,23 @@
+<body id="mainPage">
+    <nav id="menu" class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item"> <a href="/">Home</a></li>
+            <% if (isAuthenticated) { %>
+                <li class="main-header__item"><a href="/training">Training</a></li>
+            <% } %> 
+            <li class="main-header__item"><a href="/sign">Sign up</a></li>
+            <% if (isAuthenticated) { %>
+            <li class="main-header__item"> 
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit"> Logout</button>
+                </form>
+            </li>
+            <% } else { %>
+            <li class="main-header__item"><a href="/login">Login</a></li>
+            <% } %>
+        </ul>
+     
+        
+ 
+    </nav>
