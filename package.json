@@ -18,6 +18,9 @@
     "nodemailer": "^6.4.17",
     "nodemailer-sendgrid-transport": "^0.2.0"
   },
+  "engines": {
+    "node": "12.18.2"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
