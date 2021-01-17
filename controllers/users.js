@@ -20,8 +20,8 @@ exports.getSign = (req, res) =>{
     }
     
     res.render('sign',
-    {webTitle: 'Sign Up Page', 
-    // isAuthenticated: req.isLoggedIn
+    {
+    webTitle: 'Sign Up Page', 
     errorMessage: message,
     oldInput:{
         email: '',
@@ -85,8 +85,6 @@ exports.postSign = (req, res) => {
 };
 
 exports.getLogin = (req, res) =>{
-    // console.log(req.session.isLoggedIn);
-
     let message = req.flash('error');
     if(message.length > 0){
         message = message[0];
@@ -105,20 +103,11 @@ exports.getLogin = (req, res) =>{
 };
 
 exports.postLogin = (req, res) =>{
-    // res.setHeader('Set-Cookie', 'loggedIn = true');
-    // const isLoggedIn  = req.get('Cookie').trim().split('=')[1];
-    // req.isLoggedIn = true;
-    // console.log(req.body._csrf === req.cookies._csrf);
-    // req.session.isLoggedIn = true;
-    // const errors = validationResult(req);
     const email = req.body.email;
     const password = req.body.password;
-
+    
     Users.findBySecurity(email, password, (user) =>{
-        // console.log(user);
         if (!user){
-        //  req.flash('error','Invalid email or password');
-        // console.log(errors.array());
          return res.status(402).render('login', {
              path:'/login',
              webTitle:'Login',
@@ -130,12 +119,10 @@ exports.postLogin = (req, res) =>{
          });
         }
         req.session.isLoggedIn = true;
-        return res.render('main',
-        {   webTitle: 'main ' ,
-            path:'/main',
-            user: user,
-            // isAuthenticated: req.session.isLoggedIn
-        })
+        req.session.save(err =>{
+            console.log(err);
+            res.redirect('/');
+        });
     });
 };
 
@@ -157,7 +144,6 @@ exports.getUsers = (req,res)=>{
         {webTitle: 'Sport Web',
         path: '/',
         usersArray: users,
-        // isAuthenticated: req.session.isLoggedIn
         });
     })
     .catch(err =>{

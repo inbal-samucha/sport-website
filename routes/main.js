@@ -6,8 +6,8 @@ const userControllers = require('../controllers/users');
 
 const router = express.Router();
 
-// const membList = userList.usersList;
 
 router.get('/', userControllers.getUsers);
+router.get('/main', userControllers.getUsers);
 
 module.exports = router;
