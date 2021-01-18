@@ -10,6 +10,10 @@ This project was built using Node.js and Express together with the mongodb datab
 * express 4.17.1 <br><br>
 
 ### Installing 
+
+``` npm install ```<br>
+to install all packages in project.<br><br>
+
 ``` npm start ``` <br>
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in the browser.<br><br>
