@@ -6,7 +6,6 @@ const userControllers = require('../controllers/users');
 
 const router = express.Router();
 
-
 router.get('/', userControllers.getUsers);
 router.get('/main', userControllers.getUsers);
 
